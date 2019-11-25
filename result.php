@@ -1,3 +1,15 @@
+<?php
+if ($_GET['category']="book"){
+        require_once "class/createBooks.php";
+        $books = createBooks();
+        print $_GET['category'];print("book");
+    }elseif($_GET['category']="dvd"){
+        require_once "class/createDVDs.php";
+        $dvds = createDVDs();
+        print $_GET['category'];print("dvd");
+    }
+    exit(0); 
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -21,7 +33,7 @@
 			<section>
 				<h3>商品一覧</h3>
 				<table>
-					<caption><a href="entry.html">検索画面に戻る</a>　カートの中身を見る</caption>
+					<caption><a href="entry.php">検索画面に戻る</a>　カートの中身を見る</caption>
 					<tr>
 						<th>書籍名</th>
 						<th>価格</th>
@@ -29,34 +41,27 @@
 						<th>ISBN</th>
 						<th></th>
 					</tr>
+					<?php if ($_GET['category']="book") { ?>
+					<?php for ($i=0; $i<count($books); $i++) { ?>
 					<tr>
-						<td>Head First PHP & MySQL</td>
-						<td>4,650</td>
-						<td>Lynn Beighley</td>
-						<td>978-4873114446</td>
+						<td><?= $books[$i]->getName() ?></td>
+						<td><?= $books[$i]->getPrice() ?></td>
+						<td><?= $books[$i]->getAuthor() ?></td>
+						<td><?= $books[$i]->getCode() ?></td>
 						<td>カートに入れる</td>
 					</tr>
+					<?php } ?>
+					
+					<?php } elseif ($_GET['category']="dvd") { ?>
+					<?php for ($i=0; $i<count($dvds); $i++) { ?>
 					<tr>
-						<td>リーダブルコード</td>
-						<td>2,600</td>
-						<td>Dustin Boswell</td>
-						<td>978-4873115658</td>
+						<td><?= $dvds[$i]->getName() ?></td>
+						<td><?= $dvds[$i]->getPrice() ?></td>
+						<td><?= $dvds[$i]->getTime() ?></td>
 						<td>カートに入れる</td>
 					</tr>
-					<tr>
-						<td>Head First デザインパターン</td>
-						<td>5,060</td>
-						<td>Eric Freeman</td>
-						<td>978-4873112497</td>
-						<td>カートに入れる</td>
-					</tr>
-					<tr>
-						<td>PHPによるデザインパターン入門</td>
-						<td>2,400</td>
-						<td>下岡 秀幸</td>
-						<td>978-4798015163</td>
-						<td>カートに入れる</td>
-					</tr>
+					<?php } ?>
+					<?php } ?>
 				</table>
 			</section>
 		</article>

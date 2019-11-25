@@ -1,10 +1,10 @@
 <?php
-#require_once "DVDs.php";
+require_once "DVD.php";
 ?>
 <?php
 /**
  * 商品の配列を生成する。
- * @return array Itemクラスのインスタンスを要素とする配列
+ * 
  */
 function createDVDs():array {
 	$dvds = array(

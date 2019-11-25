@@ -1,10 +1,10 @@
 <?php
-#require_once "Books.php";
+require_once "Book.php";
 ?>
 <?php
 /**
  * 商品の配列を生成する。
- * @return array Itemクラスのインスタンスを要素とする配列
+ * 
  */
 function createBooks():array {
 	$books = array(
