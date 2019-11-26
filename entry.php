@@ -1,3 +1,12 @@
+<?php
+session_start();
+$id = "";
+if (isset($_SESSION["id"])){
+    $id = $_SESSION["id"];
+    print("<p>ようこそ、");print($id);print(" </p>");
+    print("<p><a href='logout.php'>ログアウトする</a></p>");
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -9,12 +18,10 @@
 	<link rel="stylesheet" href="./css/style.css" />
 	<link rel="stylesheet" href="./css/shoppingcart.css" />
 </head>
-
 <body id="products">
 	<header>
 		<h1>商品検索アプリケーション</h1>
 	</header>
-
 	<main>
 		<article id="entry">
 			<h2>商品検索 - カテゴリ選択</h2>
@@ -39,11 +46,9 @@
 			</form>
 		</article>
 	</main>
-
 	<footer>
 		<div id="copyright">(C) 2019 The Advanced Course on Web System Development</div>
 	</footer>
 	
 </body>
-
 </html>

@@ -1,14 +1,26 @@
 <?php
-if ($_GET['category']="book"){
+$ca = $_GET['category'];
+#print $ca;
+
+if($ca == "book"){
         require_once "class/createBooks.php";
         $books = createBooks();
-        print $_GET['category'];print("book");
-    }elseif($_GET['category']="dvd"){
+#        print $ca;print("book");
+    }elseif($ca == "dvd"){
         require_once "class/createDVDs.php";
         $dvds = createDVDs();
-        print $_GET['category'];print("dvd");
+#        print $ca;print("dvd");
     }
-    exit(0); 
+#    exit(0); 
+
+session_start();
+$id = "";
+if (isset($_SESSION["id"])){
+    $id = $_SESSION["id"];
+    print("<p>ようこそ、");print($id);print(" </p>");
+    print("<p><a href='logout.php'>ログアウトする</a></p>");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -41,7 +53,7 @@ if ($_GET['category']="book"){
 						<th>ISBN</th>
 						<th></th>
 					</tr>
-					<?php if ($_GET['category']="book") { ?>
+					<?php if ($ca=="book") { ?>
 					<?php for ($i=0; $i<count($books); $i++) { ?>
 					<tr>
 						<td><?= $books[$i]->getName() ?></td>
@@ -52,7 +64,7 @@ if ($_GET['category']="book"){
 					</tr>
 					<?php } ?>
 					
-					<?php } elseif ($_GET['category']="dvd") { ?>
+					<?php } elseif ($ca=="dvd") { ?>
 					<?php for ($i=0; $i<count($dvds); $i++) { ?>
 					<tr>
 						<td><?= $dvds[$i]->getName() ?></td>
